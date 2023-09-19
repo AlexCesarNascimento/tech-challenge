@@ -40,7 +40,7 @@ jobs:
           echo "Seu arquivo de documentação ou página inicial" > index.html
           git add -A
           git commit -m "Deploy no GitHub Pages"
-          git branch -D main || true
-          git branch -m main
+          git branch -m main-temp
+          git branch -m gh-pages main
           git push -f origin main
-          git branch -d gh-pages
+          git branch -d main-temp
