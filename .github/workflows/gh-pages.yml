@@ -43,4 +43,4 @@ jobs:
           git branch -D main || true
           git branch -m main
           git push -f origin main
-          git branch -D gh-pages
+          git branch -d gh-pages
