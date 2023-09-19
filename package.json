@@ -2,7 +2,9 @@
   "name": "tech-challenge",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "nx": "nx"
+  },
   "private": true,
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.1.0",
