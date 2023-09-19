@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Mude para o nome da sua branch principal, se necessário
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código-fonte
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14 # Mude para a versão do Node.js que seu projeto requer
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Construir o projeto Nx
+        run: npm run nx build documentos
+
+      - name: Configurar Git
+        run: |
+          git config --global user.name "${{ secrets.GITHUB_ACTOR }}"
+          git config --global user.email "${{ secrets.GITHUB_ACTOR }}@users.noreply.github.com"
+
+      - name: Publicar no GitHub Pages
+        run: |
+          git checkout --orphan gh-pages
+          git rm -rf .
+          mv dist/apps/documentos/* .
+          echo "Seu arquivo de documentação ou página inicial" > index.html
+          git add -A
+          git commit -m "Deploy no GitHub Pages"
+          git branch -D main || true
+          git branch -m main
+          git push -f origin main
+          git branch -D gh-pages
