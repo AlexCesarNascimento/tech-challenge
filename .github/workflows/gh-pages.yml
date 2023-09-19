@@ -27,6 +27,11 @@ jobs:
       - name: Construir o projeto Nx
         run: npx nx build documentacao
 
+      - name: Configurar Git
+        run: |
+          git config --global user.name "Alex Cesar"
+          git config --global user.email "alexcesar.n@gmail.com"
+
       - name: Publicar no GitHub Pages
         run: |
           git checkout --orphan gh-pages
