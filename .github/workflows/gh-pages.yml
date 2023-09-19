@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: 16.20.0 # Mude para a versão do Node.js que seu projeto requer
 
+      - name: Setup Nx CLI
+        run: npm install -g @nrwl/cli
+
       - name: Instalar dependências
         run: npm ci
 
