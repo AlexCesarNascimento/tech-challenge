@@ -36,11 +36,11 @@ jobs:
         run: |
           git checkout --orphan gh-pages
           git rm -rf .
-          mv dist/apps/documentos/* .
+          mv dist/apps/documentacao/* .
           echo "Seu arquivo de documentação ou página inicial" > index.html
           git add -A
           git commit -m "Deploy no GitHub Pages"
           git branch -m main-temp
           git branch -m gh-pages main
           git push -f origin main
-          git branch -D main-temp
+          git branch -d main-temp
