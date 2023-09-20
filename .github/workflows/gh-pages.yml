@@ -44,10 +44,17 @@ jobs:
       - name: Construir o projeto Nx
         run: npx nx build documentacao
 
+      - name: List current directory contents
+        run: |
+          set -x  # Adicione esta linha para depuração
+          ls -l
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./public
+        run: |
+          set -x  # Adicione esta linha para depuração
+          uses: actions/upload-pages-artifact@v1
+          with:
+            path: ./dist
 
   # Deployment job
   deploy:
