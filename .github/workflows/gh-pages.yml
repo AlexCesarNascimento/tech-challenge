@@ -44,11 +44,25 @@ jobs:
       - name: Construir o projeto Nx
         run: npx nx build documentacao
 
+      - name: Debugger
+        run: |
+          set -x  # Adicione esta linha para depuração
+          for dir in */; do
+            ls -l "$dir"
+          done
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: github-pages
-          path: ./public
+          path: ./dist
+
+      - name: Debugger
+        run: |
+          set -x  # Adicione esta linha para depuração
+          for dir in */; do
+            ls -l "$dir"
+          done
 
   # Deployment job
   deploy:
