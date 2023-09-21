@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  ACTIONS_STEP_DEBUG: true
+
 permissions:
   contents: read
   pages: write
@@ -47,8 +50,7 @@ jobs:
       - name: Debugger
         run: |
           set -x  # Adicione esta linha para depuração
-          find . -maxdepth 2 -type d -not -path '*/node_modules/*' | sed 's/[^\/]*\//| /g' | sed 's/| *\([^| ]\)/├── \1/g' | sed 's/| *$/└──/' > folder_structure.txt
-          find . -maxdepth 2 -type f -not -path '*/node_modules/*' > file_list.txt
+          tree -L 3 # Especifica o nível de profundidade da árvore
         continue-on-error: true
 
       - name: Upload artifact
@@ -60,8 +62,7 @@ jobs:
       - name: Debugger
         run: |
           set -x  # Adicione esta linha para depuração
-          find . -maxdepth 2 -type d -not -path '*/node_modules/*' | sed 's/[^\/]*\//| /g' | sed 's/| *\([^| ]\)/├── \1/g' | sed 's/| *$/└──/' > folder_structure.txt
-          find . -maxdepth 2 -type f -not -path '*/node_modules/*' > file_list.txt
+          tree -L 3 # Especifica o nível de profundidade da árvore
         continue-on-error: true
 
   # Deployment job
