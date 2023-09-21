@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "nx": "nx"
+    "nx": "nx",
+    "build": "nx build documentacao --configuration=production --output-path=public && mkdir -p public"
   },
   "private": true,
   "devDependencies": {

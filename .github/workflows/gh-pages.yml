@@ -44,6 +44,12 @@ jobs:
       - name: Construir o projeto Nx
         run: npx nx build documentacao
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: github-pages
+          path: ./public
+
   # Deployment job
   deploy:
     environment:
