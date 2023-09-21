@@ -47,22 +47,22 @@ jobs:
       - name: Debugger
         run: |
           set -x  # Adicione esta linha para depuração
-          for dir in */; do
-            ls -l "$dir"
-          done
+          apt-get update -q
+          apt-get install -y tree
+          tree -L 3 # Especifica o nível de profundidade da árvore
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: github-pages
-          path: ./dist
+          name: github-pages-artifact
+          path: ./dist/apps/documentacao
 
       - name: Debugger
         run: |
           set -x  # Adicione esta linha para depuração
-          for dir in */; do
-            ls -l "$dir"
-          done
+          apt-get update -q
+          apt-get install -y tree
+          tree -L 3 # Especifica o nível de profundidade da árvore
 
   # Deployment job
   deploy:
