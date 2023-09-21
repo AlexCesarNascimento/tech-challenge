@@ -44,12 +44,13 @@ jobs:
       - name: Construir o projeto Nx
         run: npx nx build documentacao
 
-      - name: Debugger
-        run: |
-          set -x  # Adicione esta linha para depuração
-          apt-get update -q
-          apt-get install -y tree
-          tree -L 3 # Especifica o nível de profundidade da árvore
+    - name: Debugger
+      run: |
+        set -x  # Adicione esta linha para depuração
+        # Liste a árvore de pastas até 2 níveis de profundidade, ignorando 'node_modules'
+        find . -maxdepth 2 -type d -not -path '*/node_modules/*' | sed 's/[^\/]*\//| /g' | sed 's/| *\([^| ]\)/├── \1/g' | sed 's/| *$/└──/' > folder_structure.txt
+        find . -maxdepth 2 -type f -not -path '*/node_modules/*' > file_list.txt
+      continue-on-error: true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -57,12 +58,13 @@ jobs:
           name: github-pages-artifact
           path: ./dist/apps/documentacao
 
-      - name: Debugger
-        run: |
-          set -x  # Adicione esta linha para depuração
-          apt-get update -q
-          apt-get install -y tree
-          tree -L 3 # Especifica o nível de profundidade da árvore
+    - name: Debugger
+      run: |
+        set -x  # Adicione esta linha para depuração
+        # Liste a árvore de pastas até 2 níveis de profundidade, ignorando 'node_modules'
+        find . -maxdepth 2 -type d -not -path '*/node_modules/*' | sed 's/[^\/]*\//| /g' | sed 's/| *\([^| ]\)/├── \1/g' | sed 's/| *$/└──/' > folder_structure.txt
+        find . -maxdepth 2 -type f -not -path '*/node_modules/*' > file_list.txt
+      continue-on-error: true
 
   # Deployment job
   deploy:
