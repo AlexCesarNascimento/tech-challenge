@@ -50,7 +50,8 @@ jobs:
       - name: Debugger
         run: |
           set -x  # Adicione esta linha para depuração
-          tree -L 3 # Especifica o nível de profundidade da árvore
+          find . -maxdepth 2 -type d -not -path '*/node_modules/*' | sed 's/[^/]*\//| /g'
+          tree -L 999 dist
         continue-on-error: true
 
       - name: Upload artifact
@@ -62,7 +63,8 @@ jobs:
       - name: Debugger
         run: |
           set -x  # Adicione esta linha para depuração
-          tree -L 3 # Especifica o nível de profundidade da árvore
+          find . -maxdepth 2 -type d -not -path '*/node_modules/*' | sed 's/[^/]*\//| /g'
+          tree -L 999 dist
         continue-on-error: true
 
   # Deployment job
