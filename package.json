@@ -5,7 +5,6 @@
   "scripts": {
     "nx": "nx"
   },
-  "private": true,
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.1.0",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
