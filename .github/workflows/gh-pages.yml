@@ -77,4 +77,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          publish_dir: ./dist/apps/documentacao
+          publish_dir: ./home/runner/work/tech-challenge/tech-challenge
