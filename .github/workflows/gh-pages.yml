@@ -42,11 +42,14 @@ jobs:
       - name: Setup Nx CLI
         run: npm install -g @nrwl/cli
 
-      - name: Build o projeto Nx
-        run: npx nx build documentacao
-
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v3
+      - name: Install Node.js dependencies
+        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+
+      - name: Construir o projeto Nx
+        run: npx nx build documentacao
 
       - name: Deploy to GitHub Pages  🚀
         id: deployment
