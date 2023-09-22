@@ -73,14 +73,6 @@ jobs:
         with:
           name: github-pages
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14 # Você pode escolher a versão desejada do Node.js
-
-      - name: Configurar Nx Nrwl
-        run: npm install -g nx
-
       - name: Deploy to GitHub Pages  🚀
         id: deployment
         uses: actions/deploy-pages@v2
