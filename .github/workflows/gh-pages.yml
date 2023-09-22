@@ -26,8 +26,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps  🔧:
-      - name: Checkout código-fonte
+    steps:
+      - name: Checkout código-fonte 🔧
         uses: actions/checkout@v3
 
       - name: Setup Node.js
