@@ -23,7 +23,10 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
@@ -34,6 +37,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.20.0
+          cache: 'npm'
 
       - name: Setup Nx CLI
         run: npm install -g @nrwl/cli
@@ -44,14 +48,17 @@ jobs:
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
 
-      - name: Construir o projeto Nx
+      - name: Build o projeto Nx
         run: npx nx build documentacao
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
 
       - name: Empacotar artefatos
         uses: actions/upload-artifact@v2
         with:
           name: github-pages
-          path: ./dist/apps/documentacao
+          path: "./dist"
 
       - name: Debugger
         run: |
@@ -60,14 +67,6 @@ jobs:
           tree -L 999 dist
         continue-on-error: true
 
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages  🚀
         id: deployment
         uses: actions/deploy-pages@v2
