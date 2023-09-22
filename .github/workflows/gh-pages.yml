@@ -76,5 +76,3 @@ jobs:
       - name: Deploy to GitHub Pages  🚀
         id: deployment
         uses: actions/deploy-pages@v2
-        with:
-          publish_dir: ./home/runner/work/tech-challenge/tech-challenge
