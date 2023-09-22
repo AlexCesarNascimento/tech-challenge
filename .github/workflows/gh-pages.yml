@@ -23,10 +23,10 @@ defaults:
     shell: bash
 
 jobs:
-  build 🔧:
+  build:
     runs-on: ubuntu-latest
 
-    steps:
+    steps  🔧:
       - name: Checkout código-fonte
         uses: actions/checkout@v3
 
@@ -61,7 +61,7 @@ jobs:
         continue-on-error: true
 
   # Deployment job
-  deploy 🚀:
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -81,7 +81,7 @@ jobs:
       - name: Configurar Nx Nrwl
         run: npm install -g nx
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages  🚀
         id: deployment
         uses: actions/deploy-pages@v2
         with:
