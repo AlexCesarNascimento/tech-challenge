@@ -42,31 +42,14 @@ jobs:
       - name: Setup Nx CLI
         run: npm install -g @nrwl/cli
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v3
-      - name: Install Node.js dependencies
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-
       - name: Build o projeto Nx
         run: npx nx build documentacao
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - name: Empacotar artefatos
-        uses: actions/upload-artifact@v2
-        with:
-          name: github-pages
-          path: "./dist"
-
-      - name: Debugger
-        run: |
-          set -x  # Adicione esta linha para depuração
-          find . -maxdepth 2 -type d -not -path '*/node_modules/*' | sed 's/[^/]*\//| /g'
-          tree -L 999 dist
-        continue-on-error: true
-
       - name: Deploy to GitHub Pages  🚀
         id: deployment
         uses: actions/deploy-pages@v2
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/apps/documentacao
