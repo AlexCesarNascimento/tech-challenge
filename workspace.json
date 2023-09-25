@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "projects": {
+    "abc-airline": "apps/abc-airline",
+    "abc-airline-e2e": "apps/abc-airline-e2e",
+    "models": "libs/models",
+    "services": "libs/services",
+    "store": "libs/store",
+    "ui": "libs/ui",
+    "documentacao": "apps/documentacao",
+    "white-label-airline-e2e": "apps/white-label-airline-e2e"
+  }
+}
