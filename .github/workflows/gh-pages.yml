@@ -21,7 +21,8 @@ defaults:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
+    steps:it push
+
       - name: Checkout código-fonte 🔧
         uses: actions/checkout@v3
 
