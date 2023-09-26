@@ -42,10 +42,10 @@ jobs:
         run: npm run build:documentacao
 
       # Create the artifact after build
-      - name: Upload build artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: my_build
+          name: github-pages  # Nomeando o artefato como 'github-pages'
           path: ./dist/apps/documentacao
 
   deploy:
@@ -66,4 +66,4 @@ jobs:
         uses: actions/deploy-pages@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/apps/documentacao
+          artifact_name: github-pages
