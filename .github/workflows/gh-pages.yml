@@ -9,7 +9,6 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
@@ -41,24 +40,28 @@ jobs:
       - name: Build with Nx
         run: npm run build:documentacao
 
-      - name: Upload Build Artifacts
+      # Create the artifact after build
+      - name: Upload build artifact
         uses: actions/upload-artifact@v2
         with:
-          name: documentacao-artifact
-          path: ./dist/apps/documentacao/
+          name: my_build
+          path: ./dist/apps/documentacao
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Download Build Artifacts
+      # Download the artifact before deploy
+      - name: Download build artifact
         uses: actions/download-artifact@v2
         with:
-          name: documentacao-artifact
-          path: ./dist/apps/documentacao/
+          name: my_build
+          path: ./dist/apps/documentacao
 
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: actions/deploy-pages@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/apps/documentacao/
+          publish_dir: ./dist/apps/documentacao
