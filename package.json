@@ -5,7 +5,7 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
-    "build": "nx build",
+    "build:documentacao": "nx build documentacao --prod --baseHref=/documentacao/",
     "test": "nx run-many --all --target=test --parallel",
     "test:watch": "npm run test -- --no-cache --watch",
     "test:clear": "npm run test -- --clearCache",
@@ -26,8 +26,6 @@
     "update": "nx migrate latest",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "predeploy": "npm run build -- --prod --baseHref=/documentacao/",
-    "deploy": "gh-pages -d dist/apps/documentacao",
     "i18n": "npm-run-all --parallel i18n:*",
     "i18n:abc-airline": "i18next 'apps/abc-airline/**/*.{ts,tsx}' 'libs/**/*.{ts,tsx}' -c 'apps/abc-airline/i18next-parser.config.js'"
   },
