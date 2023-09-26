@@ -58,11 +58,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Download Build Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: documentacao-artifact
-        path: ./dist/apps/documentacao/
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: documentacao-artifact
+          path: ./dist/apps/documentacao/
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
