@@ -5,7 +5,7 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
-    "build:documentacao": "nx build documentacao --prod --baseHref=/documentacao/",
+    "build:documentacao": "nx build documentacao --prod",
     "test": "nx run-many --all --target=test --parallel",
     "test:watch": "npm run test -- --no-cache --watch",
     "test:clear": "npm run test -- --clearCache",
