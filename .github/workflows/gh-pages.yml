@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: github-pages  # Nomeando o artefato como 'github-pages'
-          path: ./dist
+          path: ./dist/apps/documentacao
 
   deploy:
     environment:
