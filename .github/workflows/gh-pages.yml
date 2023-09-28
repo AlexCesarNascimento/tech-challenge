@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: github-pages  # Nomeando o artefato como 'github-pages'
-          path: ./dist/apps/documentacao
+          path: ./dist
 
   deploy:
     environment:
@@ -61,7 +61,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: github-pages
-          path: ./dist/apps/documentacao
+          path: ./dist
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -70,3 +70,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           artifact_name: github-pages
+
+      - name: List Tree of Files
+        run: |
+          sudo apt-get install -y tree
+          tree ./dist | tee tree.txt
