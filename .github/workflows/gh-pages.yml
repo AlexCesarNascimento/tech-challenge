@@ -41,6 +41,11 @@ jobs:
       - name: Build with Nx
         run: npx nx build documentacao
 
+      - name: Install and run tree from Working Directory
+        run: |
+          sudo apt-get install -y tree
+          tree . | tee tree.txt
+
       # Create the artifact after build
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
