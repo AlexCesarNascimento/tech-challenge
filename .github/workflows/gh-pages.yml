@@ -39,7 +39,7 @@ jobs:
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
 
       - name: Build with Nx
-        run: npm run build:documentacao
+        run: npx nx build documentacao
 
       # Create the artifact after build
       - name: Upload Artifact
